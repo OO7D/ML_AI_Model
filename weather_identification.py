@@ -8,7 +8,7 @@ import json
 # cityNum: 온도를 받은 지역에 할당된 숫자
 # return: 현재 기온 (int)
 def todayTemp(cityNum):
-    apikey = "65457990dc620f30dad21bc521e49123"  # api접근 key
+    apikey = ""  # api접근 key
 
     cities = ["Seoul,KR", "Busan, KR", "Chungcheongbuk-do, KR", "Chungcheongnam-do, KR", "Daegu, KR", "Daejeon, KR",
           "Gangwon-do, KR", "Gwangju, KR", "Gyeonggi-do, KR", "Gyeongsangbuk-do, KR", "Gyeongsangnam-do, KR", "Incheon, KR",
