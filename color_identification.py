@@ -10,10 +10,9 @@ import os
 import joblib
 
 # 이미지에서 8개의 색의 hex값과 각각의 가중치를 구한다.
-# url: 값을 구할 이미지의 경로(str)
+# img: 값을 구할 이미지의 cv2.imread(경로)
 # output: 구해진 색의 hex값(list), 색의 가중치(list)
-def colorClustering(url):
-    img = cv2.imread(url)
+def colorClustering(img):
     img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
     def RGB2HEX(color):
@@ -49,12 +48,12 @@ def colorClustering(url):
 # hex_colors: 색의 hex값(list). [#xxxxxx, #xxxxxx, ...]
 # color_percent: 색의 가중치(list). [int, int, ...]
 # colorClustering 함수 사용 시 출력값 가공 없이 그대로 입력 사용 가능
-# output: 판별된 색의 이름 2개(list), 판별된 각 색의 백분율 2개(list)
+# output: 판별된 색 label 2개(list, int), 판별된 각 색의 백분율 2개(list, float)
 def colorIdentify(hex_colors, color_percent):
     model = joblib.load('')     # Random forest joblib파일 경로
 
     # 색을 label 숫자로 받고 싶으면 삭제
-    color_label = ["red", "orange", "yellow", "green", "lime", "blue", "sky", "purple", "pink", "brown", "white", "grey", "black"]
+    # color_label = ["red", "orange", "yellow", "green", "lime", "blue", "sky", "purple", "pink", "brown", "white", "grey", "black"]
     # 한글로 받고 싶은 경우
     # color_label = ["빨강", "주황", "노랑", "초록", "연두", "파랑", "하늘", "보라", "분홍", "갈색", "하양", "회색", "검정"]
 
@@ -97,8 +96,8 @@ def colorIdentify(hex_colors, color_percent):
 
         second_index = c_percent.index(second_percent)
 
-        max_color.append(color_label[max_index])
-        max_color.append(color_label[second_index])
+        max_color.append(max_index)
+        max_color.append(second_index)
 
         max_pre.append(max_percent)
         max_pre.append(second_percent)

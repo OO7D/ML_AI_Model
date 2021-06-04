@@ -27,12 +27,12 @@ def todayTemp(cityNum):
     return temp
 
 # 옷장에 저장된 옷들 중 오늘 기온에 입을 수 있는 옷 filter
-# target: 사용자의 옷장 데이터 경로
+# closet: 사용자의 옷장 데이터 DataFrame
 # temp: 날씨 api에서 가져온 오늘 기온
 # return: 오늘 기온에 입을 수 있는 옷들의 id list
-def weatherIdentify(target, temp):
+def weatherIdentify(closet, temp):
     model = joblib.load('weather_classifier.joblib')  # RandomForest 학습 데이터 저장 경로
-    closet = pd.read_csv(target)
+    # closet = pd.read_csv(target)
 
     id_list = closet['id'].tolist()
     type_list = closet['type'].tolist()

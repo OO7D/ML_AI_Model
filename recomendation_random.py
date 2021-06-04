@@ -11,9 +11,9 @@ from tensorflow.python.keras.callbacks import EarlyStopping, ModelCheckpoint, Te
 from tensorflow.keras.utils import plot_model
 
 # 상의와 하의를 동시에 랜덤으로 추천해준다.
-# target: 추천해 줄 고객의 착장 history DB의 경로
-def recomendationRandom(target):
-    combination = pd.read_csv(target)
+# combination: 추천해 줄 고객의 착장 history DB DataFrame
+def recomendationRandom(combination):
+    # combination = pd.read_csv(target)
 
     top_list = list(combination.top_cls.to_list())
     bottom_list = list(combination.bottom_cls.to_list())
@@ -109,10 +109,11 @@ def recomendationRandom(target):
     result_bottom = np.argmax(predict_bottom, axis=1)
 
     # 색 label 숫자로 받고 싶으면 삭제
-    color = ['red', 'orange', 'yellow', 'green', 'lime', 'blue', 'sky', 'pink', 'purple', 'brown', 'white', 'grey', 'black']
+    # color = ['red', 'orange', 'yellow', 'green', 'lime', 'blue', 'sky', 'pink', 'purple', 'brown', 'white', 'grey', 'black']
     # 한글로 받고 싶은 경우
     # color = ['빨강', '주황', '노랑', '초록', '연두', '파랑', '하늘', '분홍', '보라', '갈색', '하양', '회색', '검정']
 
-    return color[result_top[0]], color[result_bottom[0]]
+    # 색 이름으로 받고싶은 경우
+    # return color[result_top[0]], color[result_bottom[0]]
     # label 숫자로 받고 싶은 경우
-    # return result_top[0], result_bottom[0]
+    return result_top[0], result_bottom[0]

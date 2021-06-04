@@ -5,11 +5,10 @@ import numpy as np
 from PIL import Image
 
 # 이미지의 윤곽선을 판별해 opbject에 딱 맞는 크기로 이미지를 자른다.
-# url: 이미지가 저장된 경로
-def cropImage(url):
-    img = cv2.imread(url)
-    img_gray = cv2.imread(url, cv2.IMREAD_GRAYSCALE)
-
+# img: 이미지 cv2.imread(경로)
+# img_grey: 흑백 이미지 cv2.imread(경로, cv2.IMREAD_GRAYSCALE)
+# 출력: 여백을 자른 이미지. cv2.inwrite(경로, return값)으로 저장
+def cropImage(img, img_gray):
     #b,g,r = cv2.split(img)
     #image = cv2.merge([r,g,b])
 
@@ -48,4 +47,5 @@ def cropImage(url):
 
     img_trim = img[y:y+h, x:x+w]
 
-    cv2.imwrite(url, img_trim)
+    # cv2.imwrite(url, img_trim)
+    return img_trim
